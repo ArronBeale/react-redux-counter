@@ -1,7 +1,10 @@
 // Import for Class based component
-import { Component } from 'react';
+// import { Component } from 'react';
 
-import { useSelector, useDispatch, connect } from 'react-redux'; // Class based comps cannot use hooks so use connect
+ /* Class based comps cannot use hooks so use connect.
+ {..., ..., connect }
+ */
+import { useSelector, useDispatch } from 'react-redux';
 
 import classes from './Counter.module.css';
 
@@ -11,6 +14,11 @@ const Counter = () => {
 
   const incrementHandler = () => {
     dispatch({ type: 'increment' });
+  };
+
+  // Action payload added to action objects, payload is just an extra property
+  const increaseHandler = () => {
+    dispatch({ type: 'increase', amount: 10 })
   };
 
   const decrementHandler = () => {
@@ -25,6 +33,7 @@ const Counter = () => {
       <div className={classes.value}>{counter}</div>
       <div>
         <button onClick={incrementHandler}>Increment</button>
+        <button onClick={increaseHandler}>Increase by 10</button>
         <button onClick={decrementHandler}>Decrement</button>
       </div>
       <button onClick={toggleCounterHandler}>Toggle Counter</button>
